@@ -1,0 +1,13 @@
+# Libraries (anyone can get them again with "npm install")
+node_modules/
+
+# Secret settings. NEVER upload this file.
+.env
+
+# Build output and logs
+dist/
+*.log
+
+# System files
+.DS_Store
+Thumbs.db
