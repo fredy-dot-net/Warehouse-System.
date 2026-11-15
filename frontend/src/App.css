@@ -1,0 +1,203 @@
+/* =====================================================================
+   App.css - the look of the whole website (colours, spacing, tables)
+   Colours are stored in variables at the top so they are easy to change.
+   ===================================================================== */
+:root {
+  --page: #eceae4;     /* concrete grey background */
+  --panel: #fbfaf7;    /* off-white boxes */
+  --ink: #22262b;      /* main text and menu bar */
+  --muted: #6b7077;
+  --line: #d4d1c8;
+  --hazard: #f2b705;   /* warehouse safety yellow */
+  --in: #1f7a4d;       /* green = stock in */
+  --out: #b3392b;      /* red = stock out */
+  --low-bg: #fdf0c8;   /* low stock rows */
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--page);
+  color: var(--ink);
+}
+
+h2 { margin: 0 0 16px; }
+h3 { margin: 24px 0 10px; }
+.muted { color: var(--muted); }
+.error { color: var(--out); font-weight: 600; }
+
+/* ---------- Menu bar ---------- */
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding: 12px 24px;
+  background: var(--ink);
+  border-bottom: 4px solid var(--hazard);
+  color: #fff;
+}
+.brand { font-weight: 700; font-size: 18px; }
+.links { display: flex; gap: 6px; flex: 1; flex-wrap: wrap; }
+.links a {
+  color: #cfd3d8;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+.links a.active { background: var(--hazard); color: var(--ink); font-weight: 600; }
+.user-box { display: flex; align-items: center; gap: 12px; font-size: 14px; }
+
+/* ---------- Page area ---------- */
+.page { max-width: 1100px; margin: 24px auto; padding: 0 16px; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  background: var(--ink);
+  color: #fff;
+  border: 0;
+  padding: 10px 18px;
+  border-radius: 4px;
+  font-size: 15px;
+  cursor: pointer;
+}
+.btn:hover { background: #3a4047; }
+.btn-light {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #8a9097;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btn-light.dark { color: var(--ink); border-color: var(--ink); margin-left: 8px; }
+.btn-small {
+  border: 1px solid var(--ink);
+  background: transparent;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 6px;
+}
+.btn-small.danger { color: var(--out); border-color: var(--out); }
+
+/* ---------- Forms ---------- */
+input, select {
+  padding: 9px 10px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font-size: 15px;
+  background: #fff;
+  width: 100%;
+}
+label { display: block; margin: 12px 0 4px; font-size: 14px; color: var(--muted); }
+
+.login-wrap { min-height: 100vh; display: grid; place-items: center; }
+.login-box {
+  width: 340px;
+  background: var(--panel);
+  padding: 28px;
+  border-top: 6px solid var(--hazard);
+  border-radius: 4px;
+}
+.login-box h1 { margin: 0 0 4px; font-size: 24px; }
+.login-box .btn { margin-top: 16px; width: 100%; }
+
+.product-form, .scan-form {
+  background: var(--panel);
+  padding: 16px 20px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+.product-form h3 { margin-top: 0; }
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; margin-bottom: 14px; }
+.scan-form { max-width: 460px; border-left: 6px solid var(--muted); }
+.scan-form.in { border-left-color: var(--in); }
+.scan-form.out { border-left-color: var(--out); }
+.scan-form .btn { margin-top: 16px; }
+
+.row-between { display: flex; justify-content: space-between; align-items: center; }
+
+/* ---------- Tables ---------- */
+table { width: 100%; border-collapse: collapse; background: var(--panel); }
+th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: middle; }
+th { background: #dedbd2; font-size: 14px; }
+tr.low { background: var(--low-bg); }
+.type-in { color: var(--in); font-weight: 700; }
+.type-out { color: var(--out); font-weight: 700; }
+
+/* ---------- Dashboard numbers ---------- */
+.stats { display: flex; gap: 16px; flex-wrap: wrap; }
+.stat {
+  background: var(--panel);
+  padding: 16px 24px;
+  min-width: 170px;
+  border-left: 6px solid var(--ink);
+}
+.stat.warn { border-left-color: var(--hazard); }
+.stat strong { display: block; font-size: 32px; }
+.stat span { color: var(--muted); }
+
+/* ---------- Result messages ---------- */
+.notice { max-width: 460px; padding: 12px 16px; border-radius: 4px; margin-top: 16px; }
+.notice p { margin: 4px 0; }
+.notice.ok { background: #d9efe2; border: 1px solid var(--in); }
+.notice.bad { background: #f6dcd8; border: 1px solid var(--out); font-weight: 600; }
+
+/* ---------- Badges (type and priority) ---------- */
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  margin-right: 6px;
+  border-radius: 10px;
+  font-size: 12px;
+  background: var(--head);
+}
+.badge.high { background: var(--hazard); font-weight: 600; }
+.badge.lowp { background: transparent; border: 1px solid var(--muted); color: var(--muted); }
+
+/* ---------- Search and filter bar ---------- */
+.filter-bar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: 16px 0 4px; }
+.filter-bar input, .filter-bar select { width: auto; min-width: 180px; }
+label.inline { display: flex; align-items: center; gap: 6px; margin: 0; color: var(--ink); }
+label.inline input { width: auto; min-width: 0; }
+.table-wrap { overflow-x: auto; }
+.ok-text { color: var(--in); font-weight: 600; }
+.small { font-size: 13px; margin: 4px 0; }
+
+/* ---------- Charts ---------- */
+.charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-top: 20px; }
+.chart { background: var(--panel); padding: 12px 18px 16px; border-radius: 4px; }
+.chart h3 { margin: 6px 0 10px; }
+.chart-row { display: flex; align-items: center; gap: 10px; margin: 8px 0; }
+.chart-label { width: 110px; font-size: 13px; color: var(--muted); word-break: break-word; }
+.chart-bars { flex: 1; }
+.bar-line { display: flex; align-items: center; gap: 6px; font-size: 12px; margin: 2px 0; }
+.bar { height: 12px; border-radius: 2px; min-width: 2px; }
+.bar-a { background: var(--in); }
+.bar-b { background: var(--out); }
+.legend { font-size: 13px; margin: 0 0 6px; }
+.swatch { display: inline-block; width: 12px; height: 12px; margin: 0 4px 0 12px; vertical-align: middle; }
+.legend .swatch:first-child { margin-left: 0; }
+
+/* ---------- Racks ---------- */
+.rack-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin-top: 14px; }
+.rack { background: var(--panel); padding: 12px 16px; border-left: 6px solid var(--in); border-radius: 4px; }
+.rack.taken { border-left-color: var(--out); }
+.rack-top { display: flex; justify-content: space-between; align-items: center; font-size: 18px; }
+.rack-state { margin: 4px 0; font-weight: 600; font-size: 13px; }
+.plate { width: 16px; height: 16px; border-radius: 50%; background: var(--in); }
+.plate.on { background: var(--out); }
+.rack-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.rack-actions select { width: auto; padding: 4px 6px; font-size: 13px; }
+
+/* ---------- Warning message ---------- */
+.notice.warn { background: var(--low-bg); border: 1px solid var(--hazard); font-weight: 600; }
+
+/* ---------- Printing: hide menus and buttons ---------- */
+@media print {
+  .navbar, .no-print { display: none; }
+  body { background: #fff; }
+}
